@@ -1,11 +1,11 @@
 %define	debug_package	%nil
 
-Name:           kcmsystemd
-License:        GPLv3+
-Group:          Graphical desktop/KDE
+Name:		kcmsystemd
+Version:	0.1.0
+Release:	1
+License:	GPLv3+
+Group:		Graphical desktop/KDE
 Summary:	https://github.com/rthomsen/kcmsystemd
-Version:        0.1.0
-Release:        1
 Source0:	https://github.com/rthomsen/kcmsystemd/archive/%{name}-%{version}.tar.gz
 BuildRequires:	kdebase4-devel
 BuildRequires:	qt4-devel
