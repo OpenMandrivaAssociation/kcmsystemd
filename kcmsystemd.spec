@@ -2,7 +2,7 @@
 
 Name:		kcmsystemd
 Version:	0.1.0
-Release:	3
+Release:	4
 License:	GPLv3+
 Group:		Graphical desktop/KDE
 Summary:	https://github.com/rthomsen/kcmsystemd
