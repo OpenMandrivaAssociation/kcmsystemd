@@ -1,0 +1,12 @@
+diff -urN kcmsystemd-0.5.0/src/kcmsystemd.cpp kcmsystemd-0.5.0-patched/src/kcmsystemd.cpp
+--- kcmsystemd-0.5.0/src/kcmsystemd.cpp	2013-12-30 10:28:11.000000000 +1100
++++ kcmsystemd-0.5.0-patched/src/kcmsystemd.cpp	2014-01-13 13:15:18.329741633 +1100
+@@ -2132,7 +2132,7 @@
+   if (a == edit)
+   {
+     QProcess kwrite (this);
+-    kwrite.startDetached(kdePrefix + "/lib/kde4/libexec/kdesu", QStringList() << "-t" << "--" << "kwrite" << frpath);
++    kwrite.startDetached("/usr/bin/kdesu", QStringList() << "-t" << "--" << "kwrite" << frpath);
+   }
+   if (a == isolate)
+   {
