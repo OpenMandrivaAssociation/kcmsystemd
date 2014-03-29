@@ -1,16 +1,16 @@
 Summary:	Systemd control module for KDE
 Name:		kcmsystemd
-Version:	0.5.0
+Version:	0.6.0
 Release:	1
 License:	GPLv3+
 Group:		Graphical desktop/KDE
 Url:		https://github.com/rthomsen/kcmsystemd
 Source0:	https://github.com/rthomsen/kcmsystemd/archive/%{name}-%{version}.tar.gz
 Patch0:		kcmsystemd-0.5.0-kdesu-path.patch
-Patch1:		kcmsystemd-0.5.0-cxxflags.patch
+Patch1:		kcmsystemd-0.6.0-locale.patch
+BuildRequires:	boost-devel
 BuildRequires:	kdebase4-devel
 BuildRequires:	qt4-devel
-BuildRequires:	boost-devel
 Requires:	kdebase4-runtime
 
 %description
