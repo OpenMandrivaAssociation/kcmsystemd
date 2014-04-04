@@ -1,0 +1,18 @@
+diff -urN kcmsystemd-0.6.0/src/kcmsystemd.cpp kcmsystemd-0.6.0-patched/src/kcmsystemd.cpp
+--- kcmsystemd-0.6.0/src/kcmsystemd.cpp	2014-03-28 09:04:10.000000000 +1100
++++ kcmsystemd-0.6.0-patched/src/kcmsystemd.cpp	2014-04-04 17:22:57.098576900 +1100
+@@ -247,8 +247,12 @@
+         spn->objectName() != "spnKeepFree" && 
+         spn->objectName() != "spnMaxFileSize")
+     {
+-      if (confOptList.at(confOptList.indexOf(confOption(spn->objectName().remove("spn")))).type == INTEGER)
+-        spn->setMaximum(confOptList.at(confOptList.indexOf(confOption(spn->objectName().remove("spn")))).maxVal);
++      QString basename = spn->objectName();
++      basename.remove("spn");
++      int basenameIndex = confOptList.indexOf(confOption(basename));
++      if (basenameIndex >= 0)
++        if (confOptList.at(basenameIndex).type == INTEGER)
++          spn->setMaximum(confOptList.at(basenameIndex).maxVal);
+       connect(spn, SIGNAL(valueChanged(int)), this, SLOT(slotUpdateConfOption()));
+       
+     }
