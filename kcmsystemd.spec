@@ -1,7 +1,7 @@
 Summary:	Systemd control module for KDE
 Name:		kcmsystemd
 Version:	0.6.0
-Release:	3
+Release:	4
 License:	GPLv3+
 Group:		Graphical desktop/KDE
 Url:		https://github.com/rthomsen/kcmsystemd
