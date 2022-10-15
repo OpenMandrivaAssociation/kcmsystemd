@@ -1,16 +1,24 @@
 Summary:	Systemd control module for KDE
 Name:		kcmsystemd
-Version:	0.7.0
+Version:	1.1.0
 Release:	1
 License:	GPLv3+
 Group:		Graphical desktop/KDE
 Url:		https://github.com/rthomsen/kcmsystemd
-Source0:	https://github.com/rthomsen/kcmsystemd/archive/%{name}-%{version}.tar.gz
-Patch0:		kcmsystemd-0.5.0-kdesu-path.patch
+Source0:	https://github.com/rthomsen/kcmsystemd/archive/refs/tags/%{version}.tar.gz
+BuildRequires:	cmake ninja
 BuildRequires:	boost-devel
-BuildRequires:	kdebase4-devel
-BuildRequires:	qt4-devel
-Requires:	kdebase4-runtime
+BuildRequires:	cmake(ECM)
+BuildRequires:	cmake(KF5Auth)
+BuildRequires:	cmake(KF5ConfigWidgets)
+BuildRequires:	cmake(KF5CoreAddons)
+BuildRequires:	cmake(KF5I18n)
+BuildRequires:	cmake(KF5WidgetsAddons)
+BuildRequires:	cmake(Qt5Core)
+BuildRequires:	cmake(Qt5DBus)
+BuildRequires:	cmake(Qt5Gui)
+BuildRequires:	cmake(Qt5Widgets)
+BuildRequires:	pkgconfig(libsystemd)
 
 %description
 Systemd control module for KDE.
@@ -19,24 +27,24 @@ Systemd control module for KDE.
 - Integrates in the KDE System Settings.
 - The module looks for the files in /etc/systemd and /usr/etc/systemd.
 
-%files
+%files -f %{name}.lang
 %doc LICENSE NEWS README.md
-%{_kde_libdir}/kde4/kcm_systemd.so
-%{_kde_libdir}/kde4/libexec/kcmsystemdhelper
-%{_kde_services}/kcm_systemd.desktop
-%{_datadir}/dbus-1/system-services/org.kde.kcontrol.kcmsystemd.service
-%{_datadir}/polkit-1/actions/org.kde.kcontrol.kcmsystemd.policy
-%{_sysconfdir}/dbus-1/system.d/org.kde.kcontrol.kcmsystemd.conf
+%{_datadir}/dbus-1/system-services/*
+%{_datadir}/dbus-1/system.d/*
+%{_datadir}/polkit-1/actions/*
+%{_datadir}/kservices5/*.desktop
+%{_libdir}/qt5/plugins/kcm_systemd.so
+%{_libdir}/libexec/kauth/kcmsystemdhelper
 
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q
-%patch0 -p1
+%autosetup -p1
+%cmake_kde5 -G Ninja
 
 %build
-%cmake_kde4
+%ninja_build -C build
 
 %install
-%makeinstall_std -C build
-
+%ninja_install -C build
+%find_lang %{name}
