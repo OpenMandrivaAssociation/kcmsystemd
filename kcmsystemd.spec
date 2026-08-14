@@ -40,11 +40,11 @@ Systemd control module for KDE.
 
 %prep
 %autosetup -p1
-%cmake_kde5 -G Ninja
 
 %build
-%ninja_build -C build
+%cmake -G Ninja
+%ninja_build
 
 %install
-%ninja_install -C build
+%ninja_install
 %find_lang %{name}
