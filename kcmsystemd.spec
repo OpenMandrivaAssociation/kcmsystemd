@@ -14,6 +14,7 @@ BuildRequires:	cmake(KF5ConfigWidgets)
 BuildRequires:	cmake(KF5CoreAddons)
 BuildRequires:	cmake(KF5I18n)
 BuildRequires:	cmake(KF5WidgetsAddons)
+BuildRequires:	qmake-qt5
 BuildRequires:	cmake(Qt5Core)
 BuildRequires:	cmake(Qt5DBus)
 BuildRequires:	cmake(Qt5Gui)
@@ -40,6 +41,8 @@ Systemd control module for KDE.
 
 %prep
 %autosetup -p1
+# CMake 4 no longer allows CMP0037 OLD
+sed -i '/cmake_policy.*CMP0037/d' CMakeLists.txt
 
 %build
 %cmake -G Ninja
